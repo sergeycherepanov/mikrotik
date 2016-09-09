@@ -1,0 +1,30 @@
+---
+- name: "Disable using PeerDNS on DHCP client 0"
+  raw: /ip dhcp-client set use-peer-dns=no
+  args: { executable: False }
+  register: last_output
+  failed_when: "'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}'"
+
+- name: "Set external servers to: 208.67.222.222,208.67.220.220 (OpenDNS)"
+  raw: /ip dns set servers=208.67.222.222,208.67.220.220
+  args: { executable: False }
+  register: last_output
+  failed_when: "'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}'"
+
+- name: "Remove OpenDNS agent script if exists"
+  raw: '/system script remove OpenDNS'
+  args: { executable: False }
+  register: last_output
+  failed_when: "'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}'"
+
+- name: "Setup OpenDNS agent script"
+  raw: '/system script add name=OpenDNS policy=read,test source="#\r\ \n# Variables\r\ \n#\r\ \n:local openDNSUsername \"{{ opendns_email }}\"\r\ \n:local openDNSPassword \"{{ opendns_password | replace("$", "\\\$") }}\"\r\ \n:local openDNSHostname \"{{ opendns_host }}\"\r\ \n \r\ \n#\r\ \n# Script\r\ \n#\r\ \n/tool fetch url=\"https://updates.opendns.com/nic/update\?system=dyndns&hostname=\$openDNSHostname\" \\\r\ \n user=\"\$openDNSUsername\" password=\"\$openDNSPassword\" \\\r\ \n mode=https keep-result=no"' 
+  args: { executable: False }
+  register: last_output
+  failed_when: "'syntax error' in '{{ last_output.stdout }}' or 'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}'"
+
+- name: "Setup OpenDNS agent scheduler"
+  raw: '/system scheduler add comment="Update Open DNS Dynamic IP" disabled=no interval=10m name=\ "Update openDNS Account" on-event=OpenDNS policy=\ read,test start-date=jan/01/1970 start-time=16:00:00' 
+  args: { executable: False }
+  register: last_output
+  failed_when: "'syntax error' in '{{ last_output.stdout }}' or 'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}'"

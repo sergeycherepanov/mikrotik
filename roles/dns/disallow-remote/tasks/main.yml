@@ -1,0 +1,7 @@
+---
+- name: "Disable remote queries"
+  raw: /ip dns set allow-remote-requests=no
+  args: { executable: False }
+  register: last_output
+  failed_when: "'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}'" 
+    
