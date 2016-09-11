@@ -4,7 +4,7 @@ Cli tool for setup default configs for router
 
 Features:
 * Reset to default
-* Base setup with google
+* Base setup with google dns
 * OpenDNS with agent script
 * DMZ (Forward all external connection to target internal ip)
 * ~~Dual WAN with load balancing~~
