@@ -32,7 +32,7 @@ function do_something {
   while [[ -z ${PLAYBOOK} ]] || [[ ${PLAYBOOK} -lt 0 ]] || [[ ${PLAYBBOK} -gt 4 ]]; do
     note "Available action:"
     info "[0] Reset configuration"
-    info "[1] Base configuration"
+    info "[1] Enable GoogleDNS"
     info "[2] Enable OpenDNS"
     info "[3] Enable DMZ"
     info "[4] Enable Dual WAN"
@@ -45,7 +45,7 @@ function do_something {
       ansible-playbook -i "${DIR}/hosts" -v "${DIR}/conf-reset.yml" --extra-vars ${EXTRA_VARS}
     ;;
     1)
-      ansible-playbook -i "${DIR}/hosts" -v "${DIR}/conf-base.yml" --extra-vars ${EXTRA_VARS}
+      ansible-playbook -i "${DIR}/hosts" -v "${DIR}/conf-googledns.yml" --extra-vars ${EXTRA_VARS}
     ;;
     2)
       ansible-playbook -i "${DIR}/hosts" -v "${DIR}/conf-opendns.yml" --extra-vars ${EXTRA_VARS}

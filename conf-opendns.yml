@@ -23,4 +23,5 @@
       private: yes
   roles:
     - roles/beep
+    - roles/dns/forward
     - roles/dns/opendns
