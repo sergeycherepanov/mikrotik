@@ -15,5 +15,5 @@
   roles:
     - roles/beep
     - roles/dns/forward
-    - roles/dns/disallow-remote
+#    - roles/dns/disallow-remote # (don't forget to disableroles/dns/forward before enabling it)
     - roles/dns/google

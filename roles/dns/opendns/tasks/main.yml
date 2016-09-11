@@ -1,6 +1,6 @@
 ---
 - name: "Disable using PeerDNS on DHCP client 0"
-  raw: /ip dhcp-client set use-peer-dns=no
+  raw: /ip dhcp-client set use-peer-dns=no numbers=0
   args: { executable: False }
   register: last_output
   failed_when: "'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}'"
