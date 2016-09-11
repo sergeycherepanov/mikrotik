@@ -1,0 +1,7 @@
+---
+- name: "Configure forwarding for trafic on {{ dmz_interface }} interface to {{ dmz_target_ip }} address"
+  raw: /ip firewall nat add chain=dstnat action=dst-nat in-interface={{ dmz_interface }} to-addresses={{ dmz_target_ip }}
+  args: { executable: False }
+  register: last_output
+  failed_when: "'syntax error' in '{{ last_output.stdout }}' or 'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}'"
+

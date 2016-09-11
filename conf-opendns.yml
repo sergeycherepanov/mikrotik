@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  gather_facts: no
+  pre_tasks:
+    - add_host:
+        name: "{{ router_ip }}"
+        groups: routers
+- hosts: routers
+  gather_facts: no
+  serial: 1
+  connection: paramiko
+  user: admin 
+  vars:
+    opendns_host: 'Mikrotik'
+  vars_prompt:
+    - name: "opendns_email"
+      prompt: "OpenDNS Email"
+      confirm: no
+      private: no
+    - name: "opendns_password"
+      prompt: "OpenDNS Password"
+      confirm: yes
+      private: yes
+  roles:
+    - roles/beep
+    - roles/dns/opendns

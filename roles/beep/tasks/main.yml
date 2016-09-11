@@ -1,0 +1,5 @@
+---
+- name: Beep (check connection)
+  raw: /beep
+  args: { executable: False } 
+  

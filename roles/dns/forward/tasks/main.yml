@@ -1,0 +1,7 @@
+---
+- name: "Forward all dns reqest from 53 port to {{ inventory_hostname }}:53"
+  raw: /ip firewall nat add chain=dstnat protocol=udp dst-port=53 action=dst-nat to-addresses={{ inventory_hostname }} to-ports=53
+  args: { executable: False }
+  register: last_output
+  failed_when: "'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}'" 
+

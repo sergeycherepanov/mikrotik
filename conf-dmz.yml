@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  gather_facts: no
+  pre_tasks:
+    - add_host:
+        name: "{{ router_ip }}"
+        groups: routers
+- hosts: routers
+  gather_facts: no
+  serial: 1
+  connection: paramiko
+  user: admin 
+  vars:
+    opendns_host: 'Mikrotik'
+  vars_prompt:
+    - name: "dmz_interface"
+      prompt: "External interface (usually ether1-gateway)"
+      confirm: no
+      private: no
+    - name: "dmz_target_ip"
+      prompt: "Target ip address"
+      confirm: no
+      private: no
+  roles:
+    - roles/beep
+    - roles/dmz

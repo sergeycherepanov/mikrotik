@@ -1,0 +1,12 @@
+---
+- name: Reset configuration
+  raw: /system reset-configuration
+  args: { executable: False }
+  async: 0
+  poll: 0
+  ignore_errors: true
+- expect:
+    command: /system reset-configuration
+    responses:
+      Dangerous! Reset anyway? [y/N]: "y"
+  ignore_errors: true
