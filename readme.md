@@ -22,3 +22,10 @@ _
 ```
 
 *note: dual wan currently not implemented*
+
+
+## Usage
+
+```
+/bin/bash run.sh
+```
