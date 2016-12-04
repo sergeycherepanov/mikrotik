@@ -8,6 +8,8 @@ Features:
 * OpenDNS with agent script
 * DMZ (Forward all external connection to target internal ip)
 * ~~Dual WAN with load balancing~~
+* Setup AD Block hosts file from http://someonewhocares.org/ 
+* Enable DNS record for each DHCP lease 
 
 Screenshot:
 ```
@@ -17,6 +19,8 @@ Available action:
 [2] Enable OpenDNS 
 [3] Enable DMZ 
 [4] Enable Dual WAN 
+[5] Setup AD hosts file from http://someonewhocares.org/ 
+[6] Enable DNS record for each DHCP lease 
 Choose what you want to do:
 _
 ```
