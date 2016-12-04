@@ -6,7 +6,7 @@
   failed_when: "'syntax error' in '{{ last_output.stdout }}' or 'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}' or 'already exists' in '{{ last_output.stdout }}'"
 
 - name: "Setup DHCP agent scheduler"
-  raw: '/system scheduler add comment="Update DNS record for each DHCP lease" disabled=no interval=5m name=\ "DNS record for each DHCP lease" on-event=DHCP2DNS policy=\ policy,read,write,test start-date=jan/01/1970 start-time=16:00:00' 
+  raw: '/system scheduler add comment="Update DNS record for each DHCP lease" disabled=no interval={{ update_interval }}m name=\ "DNS record for each DHCP lease" on-event=DHCP2DNS policy=\ policy,read,write,test start-date=jan/01/1970 start-time=16:00:00' 
   args: { executable: False }
   register: last_output
   failed_when: "'syntax error' in '{{ last_output.stdout }}' or 'bad command' in '{{ last_output.stdout }}' or 'invalid value' in '{{ last_output.stdout }}' or 'expected end of command' in '{{ last_output.stdout }}' or 'already exists' in '{{ last_output.stdout }}'"

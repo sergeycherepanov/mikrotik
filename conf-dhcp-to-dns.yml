@@ -19,3 +19,8 @@
       confirm: no
       private: no
       default: local
+    - name: "update_interval"
+      prompt: "Update Interval (minutes)"
+      confirm: no
+      private: no
+      default: 5
