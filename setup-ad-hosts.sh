@@ -33,6 +33,6 @@ COMMANDS=$(curl http://someonewhocares.org/hosts/hosts 2>/dev/null | grep -v "#"
 success "Rows fetched:$(echo "${COMMANDS}" | wc -l)"
 
 warning "Configure router"
-echo "${COMMANDS}" | ssh -T admin@192.168.88.1
+echo "${COMMANDS}" | ssh -T -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no admin@192.168.88.1
 
 success "Router updated"
