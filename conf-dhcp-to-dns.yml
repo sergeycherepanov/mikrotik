@@ -18,4 +18,4 @@
       prompt: "Local domain"
       confirm: no
       private: no
-      default: loc
+      default: local
