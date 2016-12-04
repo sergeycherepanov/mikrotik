@@ -25,6 +25,7 @@ Choose what you want to do:
 _
 ```
 
+*note: remove password from router before start*
 *note: dual wan currently not implemented*
 
 

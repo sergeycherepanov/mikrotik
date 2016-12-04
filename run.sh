@@ -44,16 +44,16 @@ function do_something {
   
   case ${PLAYBOOK} in
     0)
-      ansible-playbook -i "${DIR}/hosts" -v "${DIR}/conf-reset.yml" --extra-vars ${EXTRA_VARS}
+      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-reset.yml" --extra-vars "${EXTRA_VARS}"
     ;;
     1)
-      ansible-playbook -i "${DIR}/hosts" -v "${DIR}/conf-googledns.yml" --extra-vars ${EXTRA_VARS}
+      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-googledns.yml" --extra-vars "${EXTRA_VARS}"
     ;;
     2)
-      ansible-playbook -i "${DIR}/hosts" -v "${DIR}/conf-opendns.yml" --extra-vars ${EXTRA_VARS}
+      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-opendns.yml" --extra-vars "${EXTRA_VARS}"
     ;;
     3)
-      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-dmz.yml" --extra-vars ${EXTRA_VARS}
+      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-dmz.yml" --extra-vars"${EXTRA_VARS}"
     ;;
     4)
       warning "Playbook not implemented"
@@ -62,12 +62,12 @@ function do_something {
      ${DIR}/setup-ad-hosts.sh ${ROUTER_IP}
     ;;
     6)
-      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-dhcp-to-dns.yml" --extra-vars ${EXTRA_VARS}
+      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-dhcp-to-dns.yml" --extra-vars "${EXTRA_VARS}"
     ;;
   esac
   PLAYBOOK=
   
-  note "Do you something else? [y/N]"
+  note "Do you want something else? [y/N]"
   read CONFIRM
   
   if [[ "y" = $(echo ${CONFIRM} | awk '{ print tolower($1)}') ]]; then
