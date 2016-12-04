@@ -9,9 +9,7 @@
   gather_facts: no
   serial: 1
   connection: paramiko
-  user: admin 
-  vars:
-    opendns_host: 'Mikrotik'
+  user: admin
   roles:
     - roles/beep
     - roles/reset

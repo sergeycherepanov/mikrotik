@@ -37,6 +37,7 @@ function do_something {
     info "[3] Enable DMZ"
     info "[4] Enable Dual WAN"
     info "[5] Setup AD hosts file from http://someonewhocares.org/"
+    info "[6] Enable DNS record for each DHCP lease"
     note "Choose what you want to do:"
     read PLAYBOOK
   done
@@ -59,6 +60,9 @@ function do_something {
     ;;
     5)
      ${DIR}/setup-ad-hosts.sh ${ROUTER_IP}
+    ;;
+    6)
+      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-dhcp-to-dns.yml" --extra-vars ${EXTRA_VARS}
     ;;
   esac
   PLAYBOOK=

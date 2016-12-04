@@ -9,9 +9,7 @@
   gather_facts: no
   serial: 1
   connection: paramiko
-  user: admin 
-  vars:
-    opendns_host: 'Mikrotik'
+  user: admin
   vars_prompt:
     - name: "dmz_interface"
       prompt: "External interface (usually ether1-gateway)"
