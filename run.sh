@@ -36,6 +36,7 @@ function do_something {
     info "[2] Enable OpenDNS"
     info "[3] Enable DMZ"
     info "[4] Enable Dual WAN"
+    info "[5] Setup AD hosts file from http://someonewhocares.org/"
     note "Choose what you want to do:"
     read PLAYBOOK
   done
@@ -55,6 +56,9 @@ function do_something {
     ;;
     4)
       warning "Playbook not implemented"
+    ;;
+    5)
+     ${DIR}/setup-ad-hosts.sh ${ROUTER_IP}
     ;;
   esac
   PLAYBOOK=
