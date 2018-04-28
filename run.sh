@@ -53,7 +53,7 @@ function do_something {
       ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-opendns.yml" --extra-vars "${EXTRA_VARS}"
     ;;
     3)
-      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-dmz.yml" --extra-vars"${EXTRA_VARS}"
+      ansible-playbook -i "${DIR}/hosts" -vvvv "${DIR}/conf-dmz.yml" --extra-vars "${EXTRA_VARS}"
     ;;
     4)
       warning "Playbook not implemented"
