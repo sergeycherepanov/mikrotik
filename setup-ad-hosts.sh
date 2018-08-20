@@ -28,7 +28,7 @@ fi
 
 warning "Reading hosts..."
 
-COMMANDS=$(curl http://someonewhocares.org/hosts/hosts 2>/dev/null | grep -v "#" | awk '{if ($2) print $2}' | xargs -I {} echo "/ip dns static add name={} address=${TARGET_IP}")
+COMMANDS=$(curl https://someonewhocares.org/hosts/hosts 2>/dev/null | grep -v "#" | awk '{if ($2) print $2}' | xargs -I {} echo "/ip dns static add name={} address=${TARGET_IP}")
 
 success "Rows fetched:$(echo "${COMMANDS}" | wc -l)"
 
